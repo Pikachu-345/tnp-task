@@ -53,7 +53,7 @@ export default function LoginPage() {
           }
         });
         setFormErrors(newErrors);
-      } else if (axios.isAxiosError(error)) {
+      } else if (axios.isAxiosError(error)) { 
         if (error.response) {
           const message = error.response.data?.message || error.message || `Login failed with status: ${error.response.status}`;
           setLoginError(message);
@@ -62,12 +62,10 @@ export default function LoginPage() {
         } else {
           setLoginError('An unexpected error occurred while setting up the login request.');
         }
-        console.error('Axios login error:', error);
       } else if (error instanceof Error) {
         setLoginError(error.message);
       } else {
         setLoginError('An unexpected error occurred.');
-        console.error('Login error:', error);
       }
     } finally {
       setLoading(false);
@@ -75,50 +73,53 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Admin Login</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-4 sm:p-8">
+      <div className="bg-white dark:bg-gray-800 p-8 sm:p-10 rounded-3xl shadow-xl dark:shadow-xl dark:shadow-gray-700 w-full max-w-sm sm:max-w-md">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 text-gray-800 dark:text-gray-100">Admin Login</h2>
+        <p className="text-gray-600 dark:text-gray-300 text-sm mb-6 text-center">
+          Please enter your credentials to access the secure administration panel.
+        </p>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label htmlFor="username" className="block text-gray-700 text-sm font-bold mb-2">
+            <label htmlFor="username" className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
               Username:
             </label>
             <input
               type="text"
               id="username"
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                formErrors.username ? 'border-red-500' : 'focus:border-blue-500'
+              className={`shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 dark:bg-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 dark:focus:border-blue-400 ${
+                formErrors.username ? 'border-red-500 dark:border-red-400' : 'border-gray-300 dark:border-gray-600'
               }`}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             {formErrors.username && (
-              <p className="text-red-500 text-xs italic mt-1">{formErrors.username}</p>
+              <p className="text-red-500 dark:text-red-400 text-xs italic mt-1">{formErrors.username}</p>
             )}
           </div>
           <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
+            <label htmlFor="password" className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
               Password:
             </label>
             <input
               type="password"
               id="password"
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline ${
-                formErrors.password ? 'border-red-500' : 'focus:border-blue-500'
+              className={`shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 dark:bg-gray-700 dark:text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 dark:focus:border-blue-400 ${
+                formErrors.password ? 'border-red-500 dark:border-red-400' : 'border-gray-300 dark:border-gray-600'
               }`}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             {formErrors.password && (
-              <p className="text-red-500 text-xs italic mt-1">{formErrors.password}</p>
+              <p className="text-red-500 dark:text-red-400 text-xs italic mt-1">{formErrors.password}</p>
             )}
           </div>
-          {loginError && <p className="text-red-500 text-xs italic mb-4 text-center">{loginError}</p>}
+          {loginError && <p className="text-red-500 dark:text-red-400 text-xs italic mb-4 text-center">{loginError}</p>}
           <div className="flex items-center justify-between">
             <button
               type="submit"
               disabled={loading}
-              className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full ${
+              className={`w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-bold py-2 px-2 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-200 ${
                 loading ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             >
