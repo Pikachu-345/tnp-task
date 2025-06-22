@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://tnp-recruitment-challenge.manitvig.live';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const loginUserApi = async (username: string, password: string) => {
   const data = JSON.stringify({

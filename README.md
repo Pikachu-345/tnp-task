@@ -43,6 +43,25 @@ Follow these steps to get the project up and running on your local machine.
     ```bash
     npm install
     ```
+4. **Change the name of .env.example to .env or create a new .env file and paste the backend URL there.**
+
+  * **On Linux/macOS (Bash/Zsh):**
+
+    ```bash
+    mv .env.example .env
+    ```
+
+  * **On Windows (Command Prompt):**
+
+    ```cmd
+    rename .env.example .env
+    ```
+
+  * **On Windows (PowerShell):**
+
+    ```powershell
+    Rename-Item .env.example .env
+    ```
 
 ## Running the Application
 
