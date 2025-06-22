@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { generateShareTokenApi, refreshAccessTokenApi } from '@/services/api';
-import { json } from 'stream/consumers';
 
 export default function AdminPanelPage() {
   const router = useRouter();
@@ -13,7 +12,7 @@ export default function AdminPanelPage() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [copiedMessageVisible, setCopiedMessageVisible] = useState<boolean>(false); // New state for copied message
+  const [copiedMessageVisible, setCopiedMessageVisible] = useState<boolean>(false); 
 
   useEffect(() => {
     const storedAccessToken = sessionStorage.getItem('accessToken');
@@ -55,7 +54,7 @@ export default function AdminPanelPage() {
     setCopiedMessageVisible(false);
 
     try {
-      const shareResponseData = await generateShareTokenApi(accessToken);
+      const shareResponseData = await generateShareTokenApi();
       
       let shareToken = null;
       shareToken = shareResponseData.shareToken;
